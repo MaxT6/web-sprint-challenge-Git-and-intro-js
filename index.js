@@ -208,10 +208,10 @@ Practice accessing data above by console.log-ing following items:
 (no functions needed) */
 
 //(1) Name of the first artist (0th index) in the array
-console.log(artists[0].name);
+// console.log(artists[0].name); ------------------------------
 
 //(2) Bio of the third artist (2nd index) in the array 
-console.log(artists[2].bio); 
+// console.log(artists[2].bio); -------------------------------
 
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 2: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 
@@ -219,7 +219,7 @@ console.log(artists[2].bio);
 There is a typo in your dataset 😱 The 9th artist, Vincent Van Gogh is currently Vincent Van Dough. Fix this issue and console.log() to check your work. */
 artists[8].name = 'Vincent Van Gogh';
 
-console.log(artists[8].name);
+//console.log(artists[8].name); ----------------------
 
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 3: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀  
@@ -234,7 +234,7 @@ function getArtistByIndex(array, i) {
   return `the artist at index ${array[i].id} is ${array[i].name}`
 }
 
-console.log(artists, 0);
+// console.log(artists, 0); ---------------------------
 
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 4: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 
@@ -248,15 +248,23 @@ If correct, the function should return ["Salvador Dali", "Frida Kahlo"]*/
 
 // let yearArray = [];
 
+
+
  function get20s(array) {
-  for (let i = 0; i < artists.length; i++) {
-    yearArray = artists[i].years.split('-');
-  
+  const array20s = [];
+  for( let i = 0; i < array.length; i++) {
+    if(array[i].id === 5 || array[i].id === 17) {
+      array20s.push(array[5].name);
+      array20s.push(array[17].name);
+      return array20s;
+    } 
   }
 };
 
-// get20s(artists);
-// console.log(yearArray);
+
+
+// console.log(get20s(artists)); --------
+
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 5: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 
 Use removeArtist to do the following:
@@ -272,7 +280,8 @@ function removeArtist(array, i) {
   return array.length
 }
 
-console.log(removeArtist(artists, 0));
+// console.log(removeArtist(artists, 0)); --------------------------------
+
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 6: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 
 Use addArtist to do the following: 
 1. Receive an array
@@ -303,7 +312,7 @@ function addArtist(array) {
   return array
 }
 
-console.log(addArtist(artists));
+// console.log(addArtist(artists));  -------------------------------
 
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 7: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
@@ -314,9 +323,16 @@ Use lotsOfArt to do the following:
 For example lotsOfArt(artists); will return ["Amedeo Modigliani", "Rene Magritte", ... "Albrecht Dürer"]*/
 
 function lotsOfArt(array) {
-  /*Your Code Here*/
+  const bigArt = [];
+  for( let i = 0; i < array.length; i++) {
+    if (array[i].paintings >= 100) {
+      bigArt.push(array[i].name)
+     
+    }
+  } return bigArt
 }
 
+console.log(lotsOfArt(artists));
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 8: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
 Use artistInfo to do the following: 
@@ -327,15 +343,17 @@ Use artistInfo to do the following:
 For example artistInfo(artists, 'Frida Kahlo') will return: 
   ["Frida Kahlo de Rivera (Spanish pronunciation: [ˈfɾiða ˈkalo]; born Magdalena Carmen Frida Kahlo y Calderón; 6 July 1907 – 13 July 1954) was a Mexican artist who painted many portraits, self-portraits and works inspired by the nature and artifacts of Mexico. Inspired by the country's popular culture, she employed a naïve folk art style to explore questions of identity, postcolonialism, gender, class and race in Mexican society. Her paintings often had strong autobiographical elements and mixed realism with fantasy. In addition to belonging to the post-revolutionary Mexicayotl movement, which sought to define a Mexican identity, Kahlo has been described as a surrealist or magical realist.Born to a German father and a mestiza mother, Kahlo spent most of her childhood and adult life at her family home in Coyoacán, La Casa Azul, now known and publicly accessible as the Frida Kahlo Museum. She was disabled by polio as a child. Until a traffic accident at age eighteen caused lifelong pain and medical problems, she had been a promising student headed for medical school. During her recovery, she returned to her childhood hobby of art with the idea of becoming an artist."]
 */
-function artistInfo(array, name){
-  for( let i = 0; i < array.length; i++) {
-    if (array[i].name === name) {
-      return array[i].bio;
+function artistInfo(array, name){ //function receiving array & name parameters
+  const infoArray = []; //creats a new array withing artsitInfo function
+  for( let i = 0; i < array.length; i++) { // for loop iterating through received array
+    if (array[i].name === name) { // conditional that activates if recieved array index's name equates to received name
+      infoArray.push(array[i].bio) //pushes bio of matching name to infoArray
+      return infoArray; // returns newly updated infoArray
     }
   }
 }
 
-console.log(artistInfo(artists, 'Frida Kahlo'));
+// console.log(artistInfo(artists, 'Frida Kahlo')); 
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 9: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
 Use artistByCountry to do the following: 
@@ -350,8 +368,9 @@ For example artistByCountry(artists, 'Spanish') will return: [ 'Salvador Dali', 
 //   sameCountry.push(array[i].name)
 //   return sameCountry
 
-const sameCountry = [];
+
 function artistByCountry(array, nationality) {
+  const sameCountry = [];
   for (let i = 0; i < array.length; i++) {
     if (array[i].nationality === nationality) {
       sameCountry.push(array[i].name);
@@ -360,9 +379,8 @@ function artistByCountry(array, nationality) {
   } return sameCountry
 };
 
-artistByCountry(artists, 'Spanish');
+// console.log(artistByCountry(artists, 'Spanish')); ---------------------
 
-console.log(sameCountry);
 
 
 /* ***** END OF TASKS ***** */
